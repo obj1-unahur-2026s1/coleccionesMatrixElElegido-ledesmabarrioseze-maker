@@ -1,0 +1,84 @@
+import nave.*
+import tripulantes.*
+
+describe "nave" {
+
+  test "subir y contar pasajeros" {
+    nave.chocar()
+    nave.subirALaNave(neo)
+    assert.equals(1, nave.contarPasajeros())
+    
+  }
+
+  test "no agrega repetidos" {
+    nave.chocar()
+    nave.subirALaNave(neo)
+    nave.subirALaNave(neo)
+    assert.equals(1, nave.contarPasajeros())
+    
+  }
+
+  test "el elegido esta en la nave" {
+    nave.chocar()
+    nave.subirALaNave(neo)
+    assert.that(nave.elElegidoEsta())
+
+  }
+
+  test "mayor y menor vitalidad" {
+    nave.chocar()
+    nave.subirALaNave(neo)
+    nave.subirALaNave(trinity)
+
+    assert.equals(neo, nave.pasajeroDeMayorVitalidad())
+    assert.equals(trinity, nave.pasajeroDeMenorVitalidad())
+
+  }
+
+  test "chocar vacia la nave" {
+    nave.chocar()
+    nave.subirALaNave(neo)
+    nave.chocar()
+    assert.equals(0, nave.contarPasajeros())
+
+  }
+
+  test "acelerar saca al elegido" {
+    nave.chocar()
+    nave.subirALaNave(neo)
+    nave.subirALaNave(morfeo)
+    nave.acelerar()
+
+    assert.notThat(nave.elElegidoEsta())
+
+  }
+
+  test "no esta equilibrada con los tres tripulantes" {
+  nave.chocar()
+
+  nave.subirALaNave(neo)
+  nave.subirALaNave(morfeo)
+  nave.subirALaNave(trinity)
+
+  assert.notThat(nave.estaEquilibrada())
+  
+  }
+
+test "esta equilibrada con neo y morfeo" {
+  nave.chocar()
+
+  nave.subirALaNave(neo)  
+  nave.subirALaNave(morfeo)
+
+  assert.that(nave.estaEquilibrada())
+  
+  }
+
+test "esta equilibrada cuando la nave esta vacia" {
+  nave.chocar()
+
+  assert.that(nave.estaEquilibrada())
+  
+  }
+
+}

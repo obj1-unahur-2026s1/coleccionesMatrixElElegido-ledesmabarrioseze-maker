@@ -1,0 +1,48 @@
+import tripulantes.*
+
+describe "tests pasajeros" {
+
+  test "Neo empieza con 100 de energia y vitalidad 10" {
+    assert.equals(10, neo.vitalidad())
+  }
+
+  test "Neo al saltar pierde la mitad de energia" {
+    neo.saltar()
+    assert.equals(5, neo.vitalidad())
+  }
+
+  test "Neo al saltar dos veces sigue perdiendo la mitad" {
+    neo.saltar()
+    neo.saltar()
+    assert.equals(2.5, neo.vitalidad())
+  }
+
+  test "Neo es el elegido" {
+    assert.that(neo.esElElegido())
+  }
+
+  test "Morfeo empieza con vitalidad 8 y no es el elegido" {
+    assert.equals(8, morfeo.vitalidad())
+    assert.notThat(morfeo.esElElegido())
+  }
+
+  test "Morfeo al saltar pierde vitalidad y cambia estado" {
+    morfeo.saltar()
+    assert.equals(7, morfeo.vitalidad())
+  }
+
+  test "Morfeo al saltar dos veces pierde 2 de vitalidad" {
+    morfeo.saltar()
+    morfeo.saltar()
+    assert.equals(6, morfeo.vitalidad())
+  }
+
+  test "Trinity tiene siempre vitalidad 0" {
+    assert.equals(0, trinity.vitalidad())
+  }
+
+  test "Trinity no es la elegida" {
+    assert.notThat(trinity.esElElegido())
+  }
+
+}
